@@ -1,8 +1,46 @@
-﻿// https://github.com/Infocatcher/Handy_Clicks_scripts/tree/master/Link
+// https://github.com/Infocatcher/Handy_Clicks_scripts/tree/master/Link
 // Code for link-like types in Handy Clicks extension
 // Shows menu to copy link URI and/or text in various formats
-// (c) Infocatcher 2009-2013
-// version 0.1.1 - 2013-04-29
+// (c) Infocatcher 2009-2014
+// version 0.1.2 - 2014-02-03
+
+var _this = this;
+function _localize(sid) {
+	var strings = {
+		en: {
+			copyLink: "Copy link",
+			copyLinkKey: "l",
+			copyText: "Copy text",
+			copyTextKey: "t",
+			copyBB: "Copy as BB-code",
+			copyBBKey: "B",
+			copyHTML: "Copy as HTML",
+			copyHTMLKey: "H"
+		},
+		ru: {
+			copyLink: "Копировать ссылку",
+			copyLinkKey: "с",
+			copyText: "Копировать текст",
+			copyTextKey: "т",
+			copyBB: "Копировать в формате BB-code",
+			copyBBKey: "B",
+			copyHTML: "Копировать в формате HTML",
+			copyHTMLKey: "H"
+		}
+	};
+	var locale = (function() {
+		if(!_this.pu.getPref("intl.locale.matchOS")) {
+			var locale = _this.pu.getPref("general.useragent.locale");
+			if(locale.substr(0, 9) != "chrome://")
+				return locale;
+		}
+		return _this.ut.xcr.getSelectedLocale("global");
+	})().match(/^[a-z]*/)[0];
+	_localize = function(sid) {
+		return strings[locale] && strings[locale][sid] || strings.en[sid] || sid;
+	};
+	return _localize.apply(this, arguments);
+}
 
 var uris = Array.concat(this.getItemURI())
 	.map(this.losslessDecodeURI, this);
@@ -21,16 +59,27 @@ var lb = this.ut.lineBreak;
 var sourceDoc = this.getSourceDocument();
 var items = this.ut.parseXULFromString('\
 	<menupopup xmlns="' + this.ut.XULNS + '">\
-		<menuitem label="Копировать ссылку" tooltiptext="' + this.ut.encodeHTML(uris.join(lb), true, true) + '" />\
-		<menuitem label="Копировать текст" tooltiptext="' + this.ut.encodeHTML(texts.join(lb), true, true) + '" />\
+		<menuitem\
+			label="' + _localize("copyLink") + '"\
+			accesskey="' + _localize("copyLinkKey") + '"\
+			tooltiptext="' + this.ut.encodeHTML(uris.join(lb), true, true) + '" />\
+		<menuitem\
+			label="' + _localize("copyText") + '"\
+			accesskey="' + _localize("copyTextKey") + '"\
+			tooltiptext="' + this.ut.encodeHTML(texts.join(lb), true, true) + '" />\
 		<menuseparator />\
-		<menuitem label="Копировать в формате BB-code" tooltiptext="' + this.ut.encodeHTML(bbs.join(lb), true, true) + '" />\
-		<menuitem label="Копировать в формате HTML" tooltiptext="' + this.ut.encodeHTML(htmls.join(lb), true, true) + '" />\
+		<menuitem\
+			label="' + _localize("copyBB") + '"\
+			accesskey="' + _localize("copyBBKey") + '"\
+			tooltiptext="' + this.ut.encodeHTML(bbs.join(lb), true, true) + '" />\
+		<menuitem\
+			label="' + _localize("copyHTML") + '"\
+			accesskey="' + _localize("copyHTMLKey") + '"\
+			tooltiptext="' + this.ut.encodeHTML(htmls.join(lb), true, true) + '" />\
 	</menupopup>'
 );
 this.addEditItem(items);
 var popup = this.showGeneratedPopup(items);
-var _this = this;
 popup.copyStr = function(e) {
 	var tt = e.target.getAttribute("tooltiptext");
 	tt && _this.ut.copyStr(tt, sourceDoc);
