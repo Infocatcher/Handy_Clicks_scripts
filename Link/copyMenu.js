@@ -2,7 +2,7 @@
 // Code for link-like types in Handy Clicks extension
 // Shows menu to copy link URI and/or text in various formats
 // (c) Infocatcher 2009-2014
-// version 0.1.2 - 2014-02-03
+// version 0.1.2.1 - 2014-03-20
 
 var _this = this;
 function _localize(sid) {
@@ -43,7 +43,7 @@ function _localize(sid) {
 }
 
 var uris = Array.concat(this.getItemURI())
-	.map(this.losslessDecodeURI, this);
+	.map(this.decodeURI || this.losslessDecodeURI, this);
 var texts = Array.concat(this.getItemText()).map(function(s, indx) {
 	return s || uris[indx];
 });
