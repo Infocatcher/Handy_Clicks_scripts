@@ -1,6 +1,7 @@
 Scripts for <a href="https://github.com/Infocatcher/Handy_Clicks">Handy Clicks</a> extension on Firefox/SeaMonkey.
 
 <hr>
+
 #### Subcategories in alphabetical order
 
 ##### <a href="Link">Link</a>
