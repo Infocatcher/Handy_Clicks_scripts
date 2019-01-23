@@ -5,7 +5,10 @@ Scripts for <a href="https://github.com/Infocatcher/Handy_Clicks">Handy Clicks</
 #### Subcategories in alphabetical order
 
 ##### <a href="Link">Link</a>
-Codes for built-in link-like types
+Codes for link-like types
+
+##### <a href="Private_Tab">Private Tab</a>
+<a href="https://github.com/Infocatcher/Private_Tab">Private Tab</a> custom type (and related codes), codes private tabs
 
 ##### <a href="Tab">Tab</a>
 Codes for tabs
