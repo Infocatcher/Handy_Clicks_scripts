@@ -1,8 +1,8 @@
 // https://github.com/Infocatcher/Handy_Clicks_scripts/tree/master/Text_field
 // Code for "text field" custom type in Handy Clicks extension
 // Resizes any text field (even if resizing is somehow forbidden)
-// (c) Infocatcher 2009-2014
-// version 0.2.0 - 2014-02-03
+// (c) Infocatcher 2009-2014, 2019
+// version 0.2.1 - 2019-01-23
 
 var force = true;
 var ta = item;
@@ -17,7 +17,8 @@ function init() {
 	resize.w = getStyle("width");
 	resize.h = getStyle("height");
 	resize.rc = getOffset(ta);
-	resize.noY = ta.localName.toLowerCase() == "input";
+	resize.noY = ta.localName.toLowerCase() == "input"
+		|| ta.localName == "textbox" && ta.getAttribute("multiline") != "true";
 }
 var resize = function _rs(e) {
 	init();
