@@ -2,3 +2,6 @@
 
 ##### <a href="typePrivateTab">typePrivateTab</a>
 Code of custom type: detects private tabs
+
+###### <a href="privateTabCloseAllPrivate.js">privateTabCloseAllPrivate.js</a>
+Closes all private tabs and windows
