@@ -4,4 +4,7 @@
 Code of custom type: detects private tabs
 
 ###### <a href="privateTabCloseAllPrivate.js">privateTabCloseAllPrivate.js</a>
-Closes all private tabs and windows
+Closes all private tabs and windows (without confirmation)
+
+###### <a href="privateTabCloseAllPrivateWithConfirm.js">privateTabCloseAllPrivateWithConfirm.js</a>
+Closes all private tabs and windows (with confirmation)
