@@ -1,8 +1,8 @@
 // https://github.com/Infocatcher/Handy_Clicks_scripts/tree/master/Link
 // Code for link-like types in Handy Clicks extension
 // Shows menu to copy link URI and/or text in various formats
-// (c) Infocatcher 2009-2014
-// version 0.1.2.1 - 2014-03-20
+// (c) Infocatcher 2009-2014, 2019
+// version 0.1.2.2 - 2019-01-24
 
 var _this = this;
 function _localize(sid) {
@@ -31,7 +31,7 @@ function _localize(sid) {
 	var locale = (function() {
 		if(!_this.pu.getPref("intl.locale.matchOS")) {
 			var locale = _this.pu.getPref("general.useragent.locale");
-			if(locale.substr(0, 9) != "chrome://")
+			if(locale && locale.substr(0, 9) != "chrome://")
 				return locale;
 		}
 		return _this.ut.xcr.getSelectedLocale("global");
