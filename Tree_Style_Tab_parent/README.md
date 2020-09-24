@@ -2,3 +2,8 @@ Tree Style Tab parent custom type (and related codes) for <a href="https://githu
 
 ##### <a href="typeTreeStyleTabParent.js">typeTreeStyleTabParent.js</a>
 Code of custom type: detects parent tabs (Tree Style Tab extension, XUL-based version)
+
+###### Close child tabs:
+```js
+TreeStyleTabService.removeTabSubtree(item, true /*aOnlyChildren*/);
+```
