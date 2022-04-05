@@ -55,7 +55,7 @@ var htmls = uris.map(function(uri, indx) {
 		+ this.ut.encodeHTML(texts[indx], false)
 		+ '</a>';
 }, this);
-var lb = this.ut.lineBreak;
+var lb = this.ut.lineBreak || this.io.lineBreak;
 var sourceDoc = this.getSourceDocument();
 var items = this.ut.parseXULFromString('\
 	<menupopup xmlns="' + this.ut.XULNS + '">\
