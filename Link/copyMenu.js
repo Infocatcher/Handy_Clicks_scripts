@@ -12,6 +12,8 @@ function _localize(sid) {
 			copyLinkKey: "l",
 			copyText: "Copy text",
 			copyTextKey: "t",
+			copyTextAndLink: "Copy text and link",
+			copyTextAndLinkKey: "a",
 			copyBB: "Copy as BB-code",
 			copyBBKey: "B",
 			copyHTML: "Copy as HTML",
@@ -22,6 +24,8 @@ function _localize(sid) {
 			copyLinkKey: "с",
 			copyText: "Копировать текст",
 			copyTextKey: "т",
+			copyTextAndLink: "Копировать текст и ссылку",
+			copyTextAndLinkKey: "и",
 			copyBB: "Копировать в формате BB-code",
 			copyBBKey: "B",
 			copyHTML: "Копировать в формате HTML",
@@ -42,10 +46,15 @@ function _localize(sid) {
 	return _localize.apply(this, arguments);
 }
 
+var lb = this.ut.lineBreak || this.io.lineBreak;
 var uris = Array.concat(this.getItemURI())
 	.map(this.decodeURI || this.losslessDecodeURI, this);
 var texts = Array.concat(this.getItemText()).map(function(s, indx) {
 	return s || uris[indx];
+});
+var textsAndLinks = uris.map(function(uri, indx) {
+	var text = texts[indx];
+	return text == uri ? uri : text + lb + uri;
 });
 var bbs = uris.map(function(uri, indx) {
 	return "[url=" + uri + "]" + texts[indx] + "[/url]";
@@ -55,7 +64,6 @@ var htmls = uris.map(function(uri, indx) {
 		+ this.ut.encodeHTML(texts[indx], false)
 		+ '</a>';
 }, this);
-var lb = this.ut.lineBreak || this.io.lineBreak;
 var sourceDoc = this.getSourceDocument();
 var items = this.ut.parseXULFromString('\
 	<menupopup xmlns="' + this.ut.XULNS + '">\
@@ -67,6 +75,10 @@ var items = this.ut.parseXULFromString('\
 			label="' + _localize("copyText") + '"\
 			accesskey="' + _localize("copyTextKey") + '"\
 			tooltiptext="' + this.ut.encodeHTML(texts.join(lb), true, true) + '" />\
+		<menuitem\
+			label="' + _localize("copyTextAndLink") + '"\
+			accesskey="' + _localize("copyTextAndLinkKey") + '"\
+			tooltiptext="' + this.ut.encodeHTML(textsAndLinks.join(lb), true, true) + '" />\
 		<menuseparator />\
 		<menuitem\
 			label="' + _localize("copyBB") + '"\
