@@ -22,6 +22,7 @@ var items = [
 	},
 	{ tagName: "menuseparator" },
 	{ tagName: "menuitem", attr_label: "Internet Explorer", prop_hc_path: "%ProgF%\\Internet Explorer\\iexplore.exe" },
+	{ tagName: "menuitem", attr_label: "Edge", prop_hc_path: "%ProgramFiles(x86)%\\Microsoft\\Edge\\Application\\msedge.exe" },
 	//{ tagName: "menuitem", attr_label: "Google Chrome", prop_hc_path: "%LocalAppData%\\Google\\Chrome\\Application\\chrome.exe" },
 	{ tagName: "menuitem", attr_label: "Google Chrome", prop_hc_path: "%ProgF%\\Google\\Chrome\\Application\\chrome.exe" },
 	{ tagName: "menuitem", attr_label: "Seamonkey", prop_hc_path: "%ProgF%\\SeaMonkey\\seamonkey.exe" },
