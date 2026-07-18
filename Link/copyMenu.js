@@ -32,14 +32,7 @@ function _localize(sid) {
 			copyHTMLKey: "H"
 		}
 	};
-	var locale = (function() {
-		if(!_this.pu.getPref("intl.locale.matchOS")) {
-			var locale = _this.pu.getPref("general.useragent.locale");
-			if(locale && locale.substr(0, 9) != "chrome://")
-				return locale;
-		}
-		return _this.ut.xcr.getSelectedLocale("global");
-	})().match(/^[a-z]*/)[0];
+	var locale = _this.ps.locale.match(/^[a-z]*/)[0];
 	_localize = function(sid) {
 		return strings[locale] && strings[locale][sid] || strings.en[sid] || sid;
 	};
