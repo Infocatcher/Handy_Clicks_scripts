@@ -106,4 +106,5 @@ popup.onclick = function(e) {
 	var clip = readFromClipboard();
 	_this.ut.copyStr((clip ? clip + lb : "") + tt, sourceDoc);
 	_this.ut.closeMenus(this);
+	_this.ut.stopEvent(e); // Prevent "command" event
 };
