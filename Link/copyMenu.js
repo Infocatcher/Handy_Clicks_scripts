@@ -85,14 +85,25 @@ var items = this.ut.parseXULFromString('\
 		<menuitem\
 			label="' + _localize("copyHTML") + '"\
 			accesskey="' + _localize("copyHTMLKey") + '"\
-			tooltiptext="' + this.ut.encodeHTML(htmls.join(lb), true, true) + '" />\
+			tooltiptext="' + this.ut.encodeHTML(htmls.join(lb), true, true) + '"\
+			hc_html="true" />\
 	</menupopup>'
 );
 this.addEditItem(items);
 var popup = this.showGeneratedPopup(items);
 popup.copyStr = function(e) {
-	var tt = e.target.getAttribute("tooltiptext");
-	tt && _this.ut.copyStr(tt, sourceDoc);
+	var trg = e.target;
+	var tt = trg.getAttribute("tooltiptext");
+	if(!tt)
+		return;
+	if(trg.hasAttribute("hc_html")) {
+		_this.ut.setClipboardData({
+			"text/unicode": tt,
+			"text/html":    tt
+		});
+		return;
+	}
+	_this.ut.copyStr(tt, sourceDoc);
 };
 popup.setAttribute("oncommand", "this.copyStr(event);");
 popup.onclick = function(e) {
