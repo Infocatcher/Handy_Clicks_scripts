@@ -32,14 +32,19 @@ function _localize(sid) {
 			copyHTMLKey: "H"
 		}
 	};
-	var locale = _this.ps.locale.match(/^[a-z]*/)[0];
+	var locale = (
+		_this.ps.locale // Handy Clicks 0.1.3+
+		|| Components.classes["@mozilla.org/chrome/chrome-registry;1"]
+			.getService(Components.interfaces.nsIXULChromeRegistry)
+			.getSelectedLocale("global")
+	).match(/^[a-z]*/)[0];
 	_localize = function(sid) {
 		return strings[locale] && strings[locale][sid] || strings.en[sid] || sid;
 	};
 	return _localize.apply(this, arguments);
 }
 
-var lb = this.ut.lineBreak || this.io.lineBreak;
+var lb = (this.io || this.ut).lineBreak;
 var uris = Array.concat(this.getItemURI())
 	.map(this.decodeURI || this.losslessDecodeURI, this);
 var texts = Array.concat(this.getItemText()).map(function(s, indx) {
