@@ -2,7 +2,7 @@
 // Code for link-like types in Handy Clicks extension
 // Shows menu to copy link URI and/or text in various formats
 // (c) Infocatcher 2009-2026
-// version 0.1.4 - 2026-07-19
+// version 0.1.5 - 2026-07-20
 
 var _this = this;
 function _localize(sid) {
