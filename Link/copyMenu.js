@@ -45,9 +45,9 @@ function _localize(sid) {
 }
 
 var lb = (this.io || this.ut).lineBreak;
-var uris = Array.concat(this.getItemURI())
+var uris = Array.prototype.concat.call(this.getItemURI())
 	.map(this.decodeURI || this.losslessDecodeURI, this);
-var texts = Array.concat(this.getItemText()).map(function(s, indx) {
+var texts = Array.prototype.concat.call(this.getItemText()).map(function(s, indx) {
 	return s || uris[indx];
 });
 var textsAndLinks = uris.map(function(uri, indx) {
